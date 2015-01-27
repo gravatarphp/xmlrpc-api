@@ -1,6 +1,6 @@
 {
     "name": "gravatarphp/xmlrpc-api",
-    "description": "A skeleton description",
+    "description": "Access your Gravatar account through XML-RPC API",
     "license": "MIT",
     "keywords": ["gravatar", "xmlrpc"],
     "homepage": "https://gravatarphp.com",

@@ -9,7 +9,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/indigophp/xmlrpc-api.svg?style=flat-square)](https://packagist.org/packages/indigophp/xmlrpc-api)
 [![Dependency Status](https://img.shields.io/versioneye/d/php/indigophp:xmlrpc-api.svg?style=flat-square)](https://www.versioneye.com/php/indigophp:xmlrpc-api)
 
-**xmlrpc-api description.**
+**Access your Gravatar account through XML-RPC API.**
 
 
 ## Install
