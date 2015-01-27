@@ -17,7 +17,7 @@
 Via Composer
 
 ``` bash
-$ composer require indigophp/xmlrpc-api
+$ composer require gravatarphp/xmlrpc-api
 ```
 
 
