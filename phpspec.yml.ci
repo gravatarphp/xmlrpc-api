@@ -1,7 +1,7 @@
 suites:
   gravatar_suite:
-    namespace: Gravatar
-    psr4_prefix: Gravatar
+    namespace: Gravatar\Xmlrpc
+    psr4_prefix: Gravatar\Xmlrpc
 extensions:
   - PhpSpec\Extension\CodeCoverageExtension
 formatter.name: pretty

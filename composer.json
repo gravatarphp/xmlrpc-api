@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Gravatar\\": "src/"
+            "Gravatar\\Xmlrpc\\": "src/"
         }
     },
     "extra": {
