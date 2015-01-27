@@ -3,7 +3,9 @@
 namespace spec\Gravatar\Xmlrpc;
 
 use fXmlRpc\ClientInterface;
+use fXmlRpc\Exception\ResponseException;
 use PhpSpec\ObjectBehavior;
+use Prophecy\Argument;
 
 class ClientSpec extends ObjectBehavior
 {
@@ -145,5 +147,14 @@ class ClientSpec extends ObjectBehavior
         ])->willReturn($response);
 
         $this->test($response)->shouldReturn($response);
+    }
+
+    function it_throws_a_fault_exception_when_something_went_bad(ClientInterface $client)
+    {
+        $e = ResponseException::fault(['faultString' => '', 'faultCode' => -7]);
+
+        $client->call(Argument::type('string'), Argument::type('array'))->willThrow($e);
+
+        $this->shouldThrow('Gravatar\Xmlrpc\Exception\Fault\InvalidUrl')->duringTest([]);
     }
 }

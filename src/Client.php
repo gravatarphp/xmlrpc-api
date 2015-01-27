@@ -12,6 +12,7 @@
 namespace Gravatar\Xmlrpc;
 
 use fXmlRpc\ClientInterface;
+use fXmlRpc\Exception\ResponseException;
 
 /**
  * @author Márk Sági-Kazár <mark.sagikazar@gmail.com>
@@ -171,6 +172,10 @@ class Client
     {
         $params['password'] = $this->password;
 
-        return $this->xmlrpcClient->call('grav.'.$method, $params);
+        try {
+            return $this->xmlrpcClient->call('grav.'.$method, $params);
+        } catch (ResponseException $e) {
+            throw Exception\Fault::create($e->getFaultString(), $e->getFaultCode());
+        }
     }
 }
