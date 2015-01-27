@@ -157,4 +157,11 @@ class ClientSpec extends ObjectBehavior
 
         $this->shouldThrow('Gravatar\Xmlrpc\Exception\Fault\InvalidUrl')->duringTest([]);
     }
+
+    function it_throws_a_generic_fault_exception_when_something_went_bad_and_we_do_not_know_it(ClientInterface $client)
+    {
+        $client->call(Argument::type('string'), Argument::type('array'))->willThrow('fXmlRpc\Exception\ResponseException');
+
+        $this->shouldThrow('Gravatar\Xmlrpc\Exception\Fault')->duringTest([]);
+    }
 }
