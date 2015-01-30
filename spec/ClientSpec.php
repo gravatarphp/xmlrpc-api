@@ -2,14 +2,14 @@
 
 namespace spec\Gravatar\Xmlrpc;
 
-use fXmlRpc\ClientInterface;
+use fXmlRpc\CallClientInterface;
 use fXmlRpc\Exception\ResponseException;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 class ClientSpec extends ObjectBehavior
 {
-    function let(ClientInterface $client)
+    function let(CallClientInterface $client)
     {
         $this->beConstructedWith($client, 'secret_word');
     }
@@ -19,7 +19,7 @@ class ClientSpec extends ObjectBehavior
         $this->shouldHaveType('Gravatar\Xmlrpc\Client');
     }
 
-    function it_checks_a_hash_existence(ClientInterface $client)
+    function it_checks_a_hash_existence(CallClientInterface $client)
     {
         $hashes = ['hash1', 'hash2'];
         $response = [
@@ -35,7 +35,7 @@ class ClientSpec extends ObjectBehavior
         $this->exists($hashes)->shouldReturn($response);
     }
 
-    function it_returns_addresses(ClientInterface $client)
+    function it_returns_addresses(CallClientInterface $client)
     {
         $response = [
             'user@domain.com' => [
@@ -52,7 +52,7 @@ class ClientSpec extends ObjectBehavior
         $this->addresses()->shouldReturn($response);
     }
 
-    function it_returns_user_images(ClientInterface $client)
+    function it_returns_user_images(CallClientInterface $client)
     {
         $response = [
             1 => [0, '?'],
@@ -65,7 +65,7 @@ class ClientSpec extends ObjectBehavior
         $this->userimages()->shouldReturn($response);
     }
 
-    function it_uploads_an_image(ClientInterface $client)
+    function it_uploads_an_image(CallClientInterface $client)
     {
         $data = base64_encode('image');
         $rating = 0;
@@ -80,7 +80,7 @@ class ClientSpec extends ObjectBehavior
         $this->saveData($data, $rating)->shouldReturn($response);
     }
 
-    function it_uploads_an_image_from_url(ClientInterface $client)
+    function it_uploads_an_image_from_url(CallClientInterface $client)
     {
         $url = 'url';
         $rating = 0;
@@ -95,7 +95,7 @@ class ClientSpec extends ObjectBehavior
         $this->saveUrl($url, $rating)->shouldReturn($response);
     }
 
-    function it_sets_the_used_image(ClientInterface $client)
+    function it_sets_the_used_image(CallClientInterface $client)
     {
         $userimage = 'userimage';
         $addresses = ['user@domain.com'];
@@ -110,7 +110,7 @@ class ClientSpec extends ObjectBehavior
         $this->useUserimage($userimage, $addresses)->shouldReturn($response);
     }
 
-    function it_removes_an_image(ClientInterface $client)
+    function it_removes_an_image(CallClientInterface $client)
     {
         $addresses = ['user@domain.com'];
         $response = ['user@domain.com' => true];
@@ -123,7 +123,7 @@ class ClientSpec extends ObjectBehavior
         $this->removeImage($addresses)->shouldReturn($response);
     }
 
-    function it_deletes_an_image(ClientInterface $client)
+    function it_deletes_an_image(CallClientInterface $client)
     {
         $userimage = 'userimage';
         $response = true;
@@ -136,7 +136,7 @@ class ClientSpec extends ObjectBehavior
         $this->deleteUserimage($userimage)->shouldReturn($response);
     }
 
-    function it_returns_test_data(ClientInterface $client)
+    function it_returns_test_data(CallClientInterface $client)
     {
         $test = 'test';
         $response = ['test' => $test];
@@ -149,7 +149,7 @@ class ClientSpec extends ObjectBehavior
         $this->test($response)->shouldReturn($response);
     }
 
-    function it_throws_a_fault_exception_when_something_went_bad(ClientInterface $client)
+    function it_throws_a_fault_exception_when_something_went_bad(CallClientInterface $client)
     {
         $e = ResponseException::fault(['faultString' => '', 'faultCode' => -7]);
 
@@ -158,7 +158,7 @@ class ClientSpec extends ObjectBehavior
         $this->shouldThrow('Gravatar\Xmlrpc\Exception\Fault\InvalidUrl')->duringTest([]);
     }
 
-    function it_throws_a_generic_fault_exception_when_something_went_bad_and_we_do_not_know_it(ClientInterface $client)
+    function it_throws_a_generic_fault_exception_when_something_went_bad_and_we_do_not_know_it(CallClientInterface $client)
     {
         $client->call(Argument::type('string'), Argument::type('array'))->willThrow('fXmlRpc\Exception\ResponseException');
 

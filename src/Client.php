@@ -11,7 +11,7 @@
 
 namespace Gravatar\Xmlrpc;
 
-use fXmlRpc\ClientInterface;
+use fXmlRpc\CallClientInterface;
 use fXmlRpc\Exception\ResponseException;
 
 /**
@@ -22,7 +22,7 @@ use fXmlRpc\Exception\ResponseException;
 class Client
 {
     /**
-     * @var ClientInterface
+     * @var CallClientInterface
      */
     protected $xmlrpcClient;
 
@@ -32,10 +32,10 @@ class Client
     protected $password;
 
     /**
-     * @param ClientInterface $xmlrpcClient
-     * @param string          $password
+     * @param CallClientInterface $xmlrpcClient
+     * @param string              $password
      */
-    public function __construct(ClientInterface $xmlrpcClient, $password)
+    public function __construct(CallClientInterface $xmlrpcClient, $password)
     {
         $this->xmlrpcClient = $xmlrpcClient;
         $this->password = $password;
