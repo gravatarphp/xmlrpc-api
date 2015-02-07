@@ -15,9 +15,9 @@ use fXmlRpc\CallClientInterface;
 use fXmlRpc\Exception\ResponseException;
 
 /**
- * @author Márk Sági-Kazár <mark.sagikazar@gmail.com>
- *
  * @link http://en.gravatar.com/site/implement/xmlrpc/
+ *
+ * @author Márk Sági-Kazár <mark.sagikazar@gmail.com>
  */
 class Client
 {
